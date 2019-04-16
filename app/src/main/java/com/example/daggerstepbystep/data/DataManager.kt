@@ -9,8 +9,7 @@ import javax.inject.Inject
 
 
 @Singleton
-class DataManager @Inject
-constructor(
+class DataManager @Inject constructor(
     @ApplicationContext private val context: Context,
     private val dbHelper: DbHelper,
     private val sharedPrefsHelper: SharedPrefsHelper

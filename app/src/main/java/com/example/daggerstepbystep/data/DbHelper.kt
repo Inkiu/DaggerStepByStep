@@ -14,8 +14,6 @@ import javax.inject.Inject
 import javax.inject.Singleton
 import android.content.ContentValues
 
-
-
 const val USER_TABLE_NAME = "users"
 const val USER_COLUMN_USER_ID = "id"
 const val USER_COLUMN_USER_NAME = "usr_name"
