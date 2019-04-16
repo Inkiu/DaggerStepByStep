@@ -53,7 +53,7 @@ class DbHelper @Inject constructor(
 
     @SuppressLint("Recycle")
     @Throws(Resources.NotFoundException::class)
-    protected fun getUser(userId: Long): User {
+    fun getUser(userId: Long): User {
         val cursor = try {
             readableDatabase.rawQuery(
                 "SELECT * FROM $USER_TABLE_NAME WHERE $USER_COLUMN_USER_ID = ? ",
@@ -75,7 +75,7 @@ class DbHelper @Inject constructor(
     }
 
     @Throws(Exception::class)
-    protected fun insertUser(user: User): Long {
+    fun insertUser(user: User): Long {
         try {
             val contentValues = ContentValues()
             contentValues.put(USER_COLUMN_USER_NAME, user.name)

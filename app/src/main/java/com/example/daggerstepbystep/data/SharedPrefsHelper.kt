@@ -27,19 +27,19 @@ class SharedPrefsHelper @Inject constructor(
         mSharedPreferences.edit().putBoolean(key, value).apply()
     }
 
-    fun get(key: String, defaultValue: String): String? {
-        return mSharedPreferences.getString(key, defaultValue)
+    fun get(key: String, defaultValue: String): String {
+        return mSharedPreferences.getString(key, defaultValue) ?: defaultValue
     }
 
-    fun get(key: String, defaultValue: Int): Int? {
+    fun get(key: String, defaultValue: Int): Int {
         return mSharedPreferences.getInt(key, defaultValue)
     }
 
-    fun get(key: String, defaultValue: Float): Float? {
+    fun get(key: String, defaultValue: Float): Float {
         return mSharedPreferences.getFloat(key, defaultValue)
     }
 
-    fun get(key: String, defaultValue: Boolean): Boolean? {
+    fun get(key: String, defaultValue: Boolean): Boolean {
         return mSharedPreferences.getBoolean(key, defaultValue)
     }
 
