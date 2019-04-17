@@ -6,7 +6,6 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import com.example.daggerstepbystep.R
-import com.example.daggerstepbystep.di.main.DaggerMainUserComponent
 import com.example.daggerstepbystep.di.main.MainUserComponent
 import com.example.daggerstepbystep.di.main.MainUserModule
 import com.example.daggerstepbystep.model.User
@@ -42,10 +41,9 @@ class MainUserFragment : Fragment(), MainContract.View {
 
     private fun createOrGetMainUserComponent(): MainUserComponent {
         if (!::mainUserComponent.isInitialized) {
-            mainUserComponent = DaggerMainUserComponent.builder()
-                .mainComponent((requireActivity() as MainActivity).mainComponent)
-                .mainUserModule(MainUserModule(this))
-                .build()
+            mainUserComponent = (requireActivity() as MainActivity)
+                .mainComponent
+                .plus(MainUserModule(this))
         }
         return mainUserComponent
     }

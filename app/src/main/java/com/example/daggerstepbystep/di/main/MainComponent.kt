@@ -16,6 +16,6 @@ interface MainComponent {
 
     fun inject(activity: MainActivity)
 
-    fun getDataManager(): DataManager
+    fun plus(mainUserModule: MainUserModule): MainUserComponent
 
 }
