@@ -17,7 +17,7 @@ class MainActivity : AppCompatActivity(), MainContract.View {
     @Inject
     lateinit var presenter: MainContract.Presenter
 
-    private var mainComponent: MainComponent? = null
+    lateinit var mainComponent: MainComponent
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -35,12 +35,12 @@ class MainActivity : AppCompatActivity(), MainContract.View {
     }
 
     private fun createOrGetMainComponent(): MainComponent {
-        if (mainComponent == null) {
+        if (!::mainComponent.isInitialized) {
             mainComponent = DaggerMainComponent.builder()
                 .mainModule(MainModule(this))
                 .applicationComponent(DaggerApp.get(this).applicationComponent)
                 .build()
         }
-        return mainComponent!!
+        return mainComponent
     }
 }
