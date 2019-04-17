@@ -1,6 +1,6 @@
 package com.example.daggerstepbystep.di.main
 
-import com.example.daggerstepbystep.MainActivity
+import com.example.daggerstepbystep.ui.main.MainActivity
 import com.example.daggerstepbystep.di.ApplicationComponent
 import com.example.daggerstepbystep.di.PerActivity
 import dagger.Component

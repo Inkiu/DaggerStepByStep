@@ -1,8 +1,11 @@
 package com.example.daggerstepbystep.di.main
 
 import android.content.Context
-import com.example.daggerstepbystep.MainActivity
+import com.example.daggerstepbystep.ui.main.MainActivity
 import com.example.daggerstepbystep.di.ActivityContext
+import com.example.daggerstepbystep.di.PerActivity
+import com.example.daggerstepbystep.ui.main.MainContract
+import com.example.daggerstepbystep.ui.main.MainPresenter
 import dagger.Module
 import dagger.Provides
 
@@ -17,5 +20,8 @@ class MainModule(
 
     @Provides
     fun provideActivity(): MainActivity = activity
+
+    @Provides
+    fun provideMainView(): MainContract.View = activity
 
 }
