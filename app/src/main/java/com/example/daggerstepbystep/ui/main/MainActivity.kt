@@ -12,35 +12,23 @@ import com.example.daggerstepbystep.model.User
 import kotlinx.android.synthetic.main.activity_main.*
 import javax.inject.Inject
 
-class MainActivity : AppCompatActivity(), MainContract.View {
+class MainActivity : AppCompatActivity() {
 
-    @Inject
-    lateinit var presenter: MainContract.Presenter
-
-    private var mainComponent: MainComponent? = null
+    lateinit var mainComponent: MainComponent
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
         createOrGetMainComponent().inject(this)
-        presenter.onCreate()
-    }
-
-    override fun onBindUser(user: User) {
-        userInfo.text = user.toString()
-    }
-
-    override fun onBindToken(token: String) {
-        accessToken.text = token
     }
 
     private fun createOrGetMainComponent(): MainComponent {
-        if (mainComponent == null) {
+        if (!::mainComponent.isInitialized) {
             mainComponent = DaggerMainComponent.builder()
                 .mainModule(MainModule(this))
                 .applicationComponent(DaggerApp.get(this).applicationComponent)
                 .build()
         }
-        return mainComponent!!
+        return mainComponent
     }
 }
