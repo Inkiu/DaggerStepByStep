@@ -12,10 +12,7 @@ import com.example.daggerstepbystep.model.User
 import kotlinx.android.synthetic.main.activity_main.*
 import javax.inject.Inject
 
-class MainActivity : AppCompatActivity(), MainContract.View {
-
-    @Inject
-    lateinit var presenter: MainContract.Presenter
+class MainActivity : AppCompatActivity() {
 
     lateinit var mainComponent: MainComponent
 
@@ -23,15 +20,6 @@ class MainActivity : AppCompatActivity(), MainContract.View {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
         createOrGetMainComponent().inject(this)
-        presenter.onCreate()
-    }
-
-    override fun onBindUser(user: User) {
-        userInfo.text = user.toString()
-    }
-
-    override fun onBindToken(token: String) {
-        accessToken.text = token
     }
 
     private fun createOrGetMainComponent(): MainComponent {
