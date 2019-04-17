@@ -20,10 +20,4 @@ class MainModule(
     @Provides
     fun provideActivity(): MainActivity = activity
 
-    @Provides
-    fun provideMainView(): MainContract.View = activity
-
-    @Provides
-    fun provideMainPresenter(presenter: MainPresenter): MainContract.Presenter = presenter
-
 }

@@ -1,5 +1,6 @@
 package com.example.daggerstepbystep.di.main
 
+import com.example.daggerstepbystep.data.DataManager
 import com.example.daggerstepbystep.ui.main.MainActivity
 import com.example.daggerstepbystep.di.ApplicationComponent
 import com.example.daggerstepbystep.di.PerActivity
@@ -15,6 +16,6 @@ interface MainComponent {
 
     fun inject(activity: MainActivity)
 
-    fun getPresenter(): MainContract.Presenter
+    fun getDataManager(): DataManager
 
 }
