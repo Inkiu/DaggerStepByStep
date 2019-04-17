@@ -13,13 +13,15 @@ import javax.inject.Inject
 class MainActivity : AppCompatActivity(), MainContract.View {
 
     @Inject
-    lateinit var presenter: MainPresenter
+    lateinit var presenter: MainContract.Presenter
 
-    var mainComponent: MainComponent? = null
+    private var mainComponent: MainComponent? = null
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
+        createOrGetMainComponent().inject(this)
+        presenter.onCreate()
     }
 
     private fun createOrGetMainComponent(): MainComponent {

@@ -10,7 +10,6 @@ class MainPresenter @Inject constructor(
 ) : MainContract.Presenter {
 
     override fun onCreate() {
-        TODO("not implemented") //To change body of created functions use File | Settings | File Templates.
     }
 
 }

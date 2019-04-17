@@ -24,4 +24,7 @@ class MainModule(
     @Provides
     fun provideMainView(): MainContract.View = activity
 
+    @Provides
+    fun provideMainPresenter(presenter: MainPresenter): MainContract.Presenter = presenter
+
 }
