@@ -8,6 +8,8 @@ import com.example.daggerstepbystep.data.DataManager
 import com.example.daggerstepbystep.di.main.DaggerMainComponent
 import com.example.daggerstepbystep.di.main.MainComponent
 import com.example.daggerstepbystep.di.main.MainModule
+import com.example.daggerstepbystep.model.User
+import kotlinx.android.synthetic.main.activity_main.*
 import javax.inject.Inject
 
 class MainActivity : AppCompatActivity(), MainContract.View {
@@ -22,6 +24,14 @@ class MainActivity : AppCompatActivity(), MainContract.View {
         setContentView(R.layout.activity_main)
         createOrGetMainComponent().inject(this)
         presenter.onCreate()
+    }
+
+    override fun onBindUser(user: User) {
+        userInfo.text = user.toString()
+    }
+
+    override fun onBindToken(token: String) {
+        accessToken.text = token
     }
 
     private fun createOrGetMainComponent(): MainComponent {
