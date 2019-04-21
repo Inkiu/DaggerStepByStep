@@ -1,5 +1,6 @@
 package com.example.daggerstepbystep.ui.main.user
 
+import android.content.Intent
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
@@ -9,6 +10,7 @@ import com.example.daggerstepbystep.R
 import com.example.daggerstepbystep.di.main.MainUserComponent
 import com.example.daggerstepbystep.di.main.MainUserModule
 import com.example.daggerstepbystep.model.User
+import com.example.daggerstepbystep.ui.detail.DetailActivity
 import com.example.daggerstepbystep.ui.main.MainActivity
 import com.example.daggerstepbystep.ui.main.MainContract
 import kotlinx.android.synthetic.main.framgnet_main_user.*
@@ -29,6 +31,9 @@ class MainUserFragment : Fragment(), MainContract.View {
         super.onActivityCreated(savedInstanceState)
         createOrGetMainUserComponent().inject(this)
         presenter.onCreate()
+
+        userInfo.setOnClickListener { presenter.onRequestDetail() }
+        accessToken.setOnClickListener { presenter.onRequestDetail() }
     }
 
     override fun onBindUser(user: User) {
@@ -37,6 +42,10 @@ class MainUserFragment : Fragment(), MainContract.View {
 
     override fun onBindToken(token: String) {
         accessToken.text = token
+    }
+
+    override fun onNavigateDetail() {
+        startActivity(Intent(requireContext(), DetailActivity::class.java))
     }
 
     private fun createOrGetMainUserComponent(): MainUserComponent {

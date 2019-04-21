@@ -22,6 +22,7 @@ class DetailActivity : AppCompatActivity(), DetailContract.View {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_detail)
         createOrGetMainComponent().inject(this)
+        presenter.onCreate()
     }
 
     override fun onBindDetail(userDetail: UserDetail) {

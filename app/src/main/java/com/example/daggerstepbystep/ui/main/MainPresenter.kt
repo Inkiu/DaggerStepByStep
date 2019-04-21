@@ -18,6 +18,11 @@ class MainPresenter @Inject constructor(
         view.onBindToken(getAccessToken())
     }
 
+    override fun onRequestDetail() {
+        // TODO Login
+        view.onNavigateDetail()
+    }
+
     private fun createUser(name: String, address: String) {
         try {
             dataManager.createUser(User(name = name, address = address))
