@@ -32,4 +32,8 @@ class DataManager @Inject constructor(
     fun getUser(userId: Long?): User {
         return dbHelper.getUser(userId!!)
     }
+
+    fun getLoginUser(): User {
+        return dbHelper.getUser(1)
+    }
 }
