@@ -1,6 +1,7 @@
 package com.example.daggerstepbystep.ui.main
 
 import com.example.daggerstepbystep.data.DataManager
+import com.example.daggerstepbystep.data.login.LoginManager
 import com.example.daggerstepbystep.model.User
 import java.lang.Exception
 import javax.inject.Inject
@@ -8,6 +9,7 @@ import javax.inject.Inject
 
 class MainPresenter @Inject constructor(
     private val view: MainContract.View,
+    private val loginManager: LoginManager,
     private val dataManager: DataManager
 ) : MainContract.Presenter {
 
@@ -19,7 +21,7 @@ class MainPresenter @Inject constructor(
     }
 
     override fun onRequestDetail() {
-        // TODO Login
+        loginManager.login(getUser())
         view.onNavigateDetail()
     }
 
