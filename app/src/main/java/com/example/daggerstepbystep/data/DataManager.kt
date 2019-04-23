@@ -30,6 +30,7 @@ class DataManager @Inject constructor(
 
     @Throws(Resources.NotFoundException::class, NullPointerException::class)
     fun getUser(userId: Long?): User {
+        if (userId == -1L) throw Resources.NotFoundException("Requested login id is not valid")
         return dbHelper.getUser(userId!!)
     }
 }

@@ -19,6 +19,10 @@ class SharedPrefsHelper @Inject constructor(
         sharedPreferences.edit().putInt(key, value).apply()
     }
 
+    fun put(key: String, value: Long) {
+        sharedPreferences.edit().putLong(key, value).apply()
+    }
+
     fun put(key: String, value: Float) {
         sharedPreferences.edit().putFloat(key, value).apply()
     }
@@ -33,6 +37,10 @@ class SharedPrefsHelper @Inject constructor(
 
     fun get(key: String, defaultValue: Int): Int {
         return sharedPreferences.getInt(key, defaultValue)
+    }
+
+    fun get(key: String, defaultValue: Long): Long {
+        return sharedPreferences.getLong(key, defaultValue)
     }
 
     fun get(key: String, defaultValue: Float): Float {

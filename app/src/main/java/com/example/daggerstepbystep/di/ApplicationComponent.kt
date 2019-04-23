@@ -6,6 +6,9 @@ import com.example.daggerstepbystep.DaggerApp
 import com.example.daggerstepbystep.data.DataManager
 import com.example.daggerstepbystep.data.DbHelper
 import com.example.daggerstepbystep.data.SharedPrefsHelper
+import com.example.daggerstepbystep.data.login.LoginManager
+import com.example.daggerstepbystep.di.detail.DetailComponent
+import com.example.daggerstepbystep.di.detail.DetailModule
 import dagger.Component
 import javax.inject.Singleton
 
@@ -24,4 +27,8 @@ interface ApplicationComponent {
     fun getPreferenceHelper(): SharedPrefsHelper
 
     fun getDbHelper(): DbHelper
+
+    fun getLoginManager(): LoginManager
+
+    fun plus(detailModule: DetailModule): DetailComponent
 }
