@@ -8,6 +8,10 @@ import com.example.daggerstepbystep.di.ApplicationModule
 import com.example.daggerstepbystep.di.DaggerApplicationComponent
 import javax.inject.Inject
 
+/*
+* Single Activity - Login Fragment, UserDetailFragment
+* */
+
 class DaggerApp : Application() {
     companion object {
         fun get(context: Context): DaggerApp = context.applicationContext as DaggerApp
