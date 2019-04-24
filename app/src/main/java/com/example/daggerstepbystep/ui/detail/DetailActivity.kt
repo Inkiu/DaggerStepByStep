@@ -6,7 +6,6 @@ import com.example.daggerstepbystep.DaggerApp
 import com.example.daggerstepbystep.R
 import com.example.daggerstepbystep.di.detail.DetailComponent
 import com.example.daggerstepbystep.di.detail.DetailModule
-import com.example.daggerstepbystep.di.main.MainModule
 import com.example.daggerstepbystep.model.UserDetail
 import kotlinx.android.synthetic.main.activity_detail.*
 import javax.inject.Inject

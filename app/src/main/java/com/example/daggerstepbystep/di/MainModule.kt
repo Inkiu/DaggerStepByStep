@@ -1,4 +1,4 @@
-package com.example.daggerstepbystep.di.main
+package com.example.daggerstepbystep.di
 
 import android.content.Context
 import com.example.daggerstepbystep.ui.main.MainActivity

@@ -4,13 +4,9 @@ import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import com.example.daggerstepbystep.DaggerApp
 import com.example.daggerstepbystep.R
-import com.example.daggerstepbystep.data.DataManager
-import com.example.daggerstepbystep.di.main.DaggerMainComponent
-import com.example.daggerstepbystep.di.main.MainComponent
-import com.example.daggerstepbystep.di.main.MainModule
-import com.example.daggerstepbystep.model.User
-import kotlinx.android.synthetic.main.activity_main.*
-import javax.inject.Inject
+import com.example.daggerstepbystep.di.DaggerMainComponent
+import com.example.daggerstepbystep.di.MainComponent
+import com.example.daggerstepbystep.di.MainModule
 
 class MainActivity : AppCompatActivity() {
 
