@@ -5,6 +5,8 @@ import com.example.daggerstepbystep.di.login.LoginModule
 import com.example.daggerstepbystep.ui.main.MainActivity
 import com.example.daggerstepbystep.di.main.MainUserComponent
 import com.example.daggerstepbystep.di.main.MainUserModule
+import com.example.daggerstepbystep.di.user.UserComponent
+import com.example.daggerstepbystep.di.user.UserModule
 import dagger.Component
 
 @PerActivity
@@ -18,6 +20,8 @@ interface MainComponent {
 
     /* Sub Components */
     fun plus(loginModule: LoginModule): LoginComponent
+
+    fun plus(userModule: UserModule): UserComponent
 
     fun plus(mainUserModule: MainUserModule): MainUserComponent
 
