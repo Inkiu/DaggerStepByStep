@@ -8,6 +8,7 @@ import com.example.daggerstepbystep.di.DaggerMainComponent
 import com.example.daggerstepbystep.di.MainComponent
 import com.example.daggerstepbystep.di.MainModule
 import com.example.daggerstepbystep.ui.login.LoginFragment
+import com.example.daggerstepbystep.ui.main.user.MainUserFragment
 
 class MainActivity : AppCompatActivity() {
 
@@ -18,8 +19,16 @@ class MainActivity : AppCompatActivity() {
         setContentView(R.layout.activity_main)
         createOrGetMainComponent().inject(this)
 
+        onNavigate(Navigation.LoginView)
+    }
+
+    fun onNavigate(navigation: Navigation) {
+        val fragment = when (navigation) {
+            Navigation.LoginView -> LoginFragment()
+            Navigation.OpenMainView -> MainUserFragment()
+        }
         supportFragmentManager.beginTransaction().apply {
-            replace(R.id.fragmentContainer, LoginFragment())
+            replace(R.id.fragmentContainer, fragment)
         }.commit()
     }
 

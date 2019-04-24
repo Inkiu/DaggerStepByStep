@@ -1,7 +1,10 @@
 package com.example.daggerstepbystep.ui.login
 
+import com.example.daggerstepbystep.ui.main.Navigation
+
 interface LoginContract {
     interface View {
+        fun onNavigate(navigation: Navigation)
         fun onError(error: ErrorType)
     }
 

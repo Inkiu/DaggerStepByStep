@@ -10,6 +10,7 @@ import com.example.daggerstepbystep.R
 import com.example.daggerstepbystep.di.login.LoginComponent
 import com.example.daggerstepbystep.di.login.LoginModule
 import com.example.daggerstepbystep.ui.main.MainActivity
+import com.example.daggerstepbystep.ui.main.Navigation
 import kotlinx.android.synthetic.main.fragment_login.*
 import javax.inject.Inject
 
@@ -31,6 +32,10 @@ class LoginFragment : Fragment(), LoginContract.View {
         btnLoginSubmit.setOnClickListener {
             presenter.onSubmit(editUserId.text.toString(), editPassword.text.toString())
         }
+    }
+
+    override fun onNavigate(navigation: Navigation) {
+        (requireActivity() as MainActivity).onNavigate(navigation)
     }
 
     override fun onError(error: LoginContract.ErrorType) {
