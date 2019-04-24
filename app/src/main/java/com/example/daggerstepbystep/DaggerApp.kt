@@ -9,7 +9,7 @@ import com.example.daggerstepbystep.di.DaggerApplicationComponent
 import javax.inject.Inject
 
 /*
-* Single Activity - Login Fragment, UserDetailFragment
+* TODO 로그인 레이어 위에 유저 레이어 올리기
 * */
 
 class DaggerApp : Application() {
