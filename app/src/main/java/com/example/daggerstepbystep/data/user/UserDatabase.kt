@@ -1,9 +1,8 @@
-package com.example.daggerstepbystep.data
+package com.example.daggerstepbystep.data.user
 
 import android.annotation.SuppressLint
 import android.content.Context
 import android.content.res.Resources
-import android.database.Cursor
 import android.database.sqlite.SQLiteDatabase
 import android.database.sqlite.SQLiteOpenHelper
 import com.example.daggerstepbystep.di.ApplicationContext
@@ -11,22 +10,24 @@ import com.example.daggerstepbystep.di.DatabaseInfo
 import com.example.daggerstepbystep.model.User
 import java.lang.Exception
 import javax.inject.Inject
-import javax.inject.Singleton
 import android.content.ContentValues
+import com.example.daggerstepbystep.di.PerLogin
 
-const val USER_TABLE_NAME = "users"
-const val USER_COLUMN_USER_ID = "id"
-const val USER_COLUMN_USER_NAME = "usr_name"
-const val USER_COLUMN_USER_ADDRESS = "usr_add"
-const val USER_COLUMN_USER_CREATED_AT = "created_at"
-const val USER_COLUMN_USER_UPDATED_AT = "updated_at"
-
-@Singleton
-class DbHelper @Inject constructor(
+@PerLogin
+class UserDatabase @Inject constructor(
     @ApplicationContext context: Context,
     @DatabaseInfo dbName: String,
     @DatabaseInfo version: Int
 ) : SQLiteOpenHelper(context, dbName, null, version) {
+
+    companion object {
+        const val USER_TABLE_NAME = "users"
+        const val USER_COLUMN_USER_ID = "id"
+        const val USER_COLUMN_USER_NAME = "usr_name"
+        const val USER_COLUMN_USER_ADDRESS = "usr_add"
+        const val USER_COLUMN_USER_CREATED_AT = "created_at"
+        const val USER_COLUMN_USER_UPDATED_AT = "updated_at"
+    }
 
     override fun onCreate(db: SQLiteDatabase) {
         createTableIfNotExist(db)

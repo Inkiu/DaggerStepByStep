@@ -2,6 +2,7 @@ package com.example.daggerstepbystep.data
 
 import android.content.Context
 import android.content.res.Resources
+import com.example.daggerstepbystep.data.user.UserDatabase
 import javax.inject.Singleton
 import com.example.daggerstepbystep.model.User
 import com.example.daggerstepbystep.di.ApplicationContext
@@ -11,7 +12,7 @@ import javax.inject.Inject
 @Singleton
 class DataManager @Inject constructor(
     @ApplicationContext private val context: Context,
-    private val dbHelper: DbHelper,
+    private val userDatabase: UserDatabase,
     private val sharedPrefsHelper: SharedPrefsHelper
 ) {
 
@@ -25,12 +26,12 @@ class DataManager @Inject constructor(
 
     @Throws(Exception::class)
     fun createUser(user: User): Long {
-        return dbHelper.insertUser(user)
+        return userDatabase.insertUser(user)
     }
 
     @Throws(Resources.NotFoundException::class, NullPointerException::class)
     fun getUser(userId: Long?): User {
         if (userId == -1L) throw Resources.NotFoundException("Requested login id is not valid")
-        return dbHelper.getUser(userId!!)
+        return userDatabase.getUser(userId!!)
     }
 }

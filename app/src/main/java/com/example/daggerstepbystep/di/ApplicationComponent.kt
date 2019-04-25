@@ -4,7 +4,7 @@ import android.app.Application
 import android.content.Context
 import com.example.daggerstepbystep.DaggerApp
 import com.example.daggerstepbystep.data.DataManager
-import com.example.daggerstepbystep.data.DbHelper
+import com.example.daggerstepbystep.data.user.UserDatabase
 import com.example.daggerstepbystep.data.SharedPrefsHelper
 import com.example.daggerstepbystep.data.login.LoginManager
 import dagger.Component
@@ -24,7 +24,7 @@ interface ApplicationComponent {
 
     fun getPreferenceHelper(): SharedPrefsHelper
 
-    fun getDbHelper(): DbHelper
+    fun getDbHelper(): UserDatabase
 
     fun getLoginManager(): LoginManager
 }

@@ -19,6 +19,10 @@ annotation class DatabaseInfo
 @Retention(AnnotationRetention.RUNTIME)
 annotation class PerActivity
 
+@Qualifier
+@Retention(AnnotationRetention.RUNTIME)
+annotation class PerLogin
+
 @Scope
 @Retention(AnnotationRetention.RUNTIME)
 annotation class PerFragment
