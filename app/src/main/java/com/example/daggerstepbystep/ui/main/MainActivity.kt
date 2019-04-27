@@ -6,12 +6,11 @@ import android.os.Bundle
 import android.widget.Toast
 import com.example.daggerstepbystep.DaggerApp
 import com.example.daggerstepbystep.R
-import com.example.daggerstepbystep.di.app.user.UserComponent
 import com.example.daggerstepbystep.di.main.DaggerMainComponent
 import com.example.daggerstepbystep.di.main.MainComponent
 import com.example.daggerstepbystep.di.main.MainModule
-import com.example.daggerstepbystep.model.User
 import com.example.daggerstepbystep.ui.login.LoginActivity
+import com.example.daggerstepbystep.ui.user.InfoFragment
 import javax.inject.Inject
 
 class MainActivity : AppCompatActivity(), MainContract.View {
@@ -30,18 +29,22 @@ class MainActivity : AppCompatActivity(), MainContract.View {
             finish()
             return
         }
-
-        presenter.onCreate()
+        inflateFragment()
     }
 
-    override fun onBindUser(user: User) {
-        Toast.makeText(this, user.address, Toast.LENGTH_SHORT).show()
+    private fun inflateFragment() {
+        supportFragmentManager.beginTransaction().apply {
+            replace(R.id.fragmentContainer, InfoFragment())
+        }.commit()
     }
 
     private fun validateMainComponent(): Boolean {
         return if (!::mainComponent.isInitialized) {
             val component = createMainComponent()
-            component?.inject(this)
+            if (component != null) {
+                mainComponent = component
+                mainComponent.inject(this)
+            }
             return component != null
         } else true
     }

@@ -9,7 +9,7 @@ import com.example.daggerstepbystep.di.app.login.LoginComponent
 import com.example.daggerstepbystep.di.app.login.LoginModule
 import com.example.daggerstepbystep.ui.main.MainActivity
 import com.example.daggerstepbystep.ui.main.Navigation
-import kotlinx.android.synthetic.main.fragment_login.*
+import kotlinx.android.synthetic.main.activity_login.*
 import javax.inject.Inject
 
 class LoginActivity : AppCompatActivity(), LoginContract.View {
@@ -20,7 +20,7 @@ class LoginActivity : AppCompatActivity(), LoginContract.View {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.fragment_login)
+        setContentView(R.layout.activity_login)
         createOrGetLoginComponent().inject(this)
 
         btnLoginSubmit.setOnClickListener {
