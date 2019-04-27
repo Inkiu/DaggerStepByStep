@@ -23,8 +23,4 @@ class AppModule(
     @Provides
     @Singleton
     fun provideUserProvider(): UserProvider = UserProvider(application)
-
-    @Provides
-    @Singleton
-    fun provideLoginManager(userProvider: UserProvider) = LoginManager(application, userProvider)
 }

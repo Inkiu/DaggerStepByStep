@@ -1,6 +1,8 @@
 package com.example.daggerstepbystep.di.app.login
 
 import android.content.Context
+import com.example.daggerstepbystep.data.login.LoginManager
+import com.example.daggerstepbystep.data.login.UserProvider
 import com.example.daggerstepbystep.di.ActivityContext
 import com.example.daggerstepbystep.ui.login.LoginActivity
 import com.example.daggerstepbystep.ui.login.LoginContract
@@ -25,4 +27,7 @@ class LoginModule(
 
     @Provides
     fun provideLoginPresenter(presenter: LoginPresenter): LoginContract.Presenter = presenter
+
+    @Provides
+    fun provideLoginManager(userProvider: UserProvider): LoginManager = LoginManager(activity, userProvider)
 }

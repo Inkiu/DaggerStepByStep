@@ -9,8 +9,12 @@ import com.example.daggerstepbystep.di.main.DaggerMainComponent
 import com.example.daggerstepbystep.di.main.MainComponent
 import com.example.daggerstepbystep.di.main.MainModule
 import com.example.daggerstepbystep.model.User
+import javax.inject.Inject
 
 class MainActivity : AppCompatActivity(), MainContract.View {
+
+    @Inject
+    lateinit var presenter: MainContract.Presenter
 
     lateinit var mainComponent: MainComponent
 
@@ -18,6 +22,8 @@ class MainActivity : AppCompatActivity(), MainContract.View {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
         createOrGetMainComponent().inject(this)
+
+        presenter.onCreate()
     }
 
     override fun onBindUser(user: User) {
