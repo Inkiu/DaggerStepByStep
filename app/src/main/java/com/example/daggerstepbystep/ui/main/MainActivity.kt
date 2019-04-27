@@ -12,6 +12,7 @@ import com.example.daggerstepbystep.di.main.MainComponent
 import com.example.daggerstepbystep.di.main.MainModule
 import com.example.daggerstepbystep.ui.login.LoginActivity
 import com.example.daggerstepbystep.ui.user.InfoFragment
+import kotlinx.android.synthetic.main.activity_main.*
 import javax.inject.Inject
 
 class MainActivity : AppCompatActivity(), MainContract.View {
@@ -23,13 +24,21 @@ class MainActivity : AppCompatActivity(), MainContract.View {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_main)
         if (!validateMainComponent()) {
             Toast.makeText(this, "Login Failed", Toast.LENGTH_SHORT).show()
             startActivity(Intent(this, LoginActivity::class.java))
             finish()
             return
         }
+        setContentView(R.layout.activity_main)
+
+        floatingButton.setOnClickListener {
+            presenter.onLogout()
+        }
+    }
+
+    override fun onRestartApp() {
+        DaggerApp.get(this).restartApp(this)
     }
 
     private fun validateMainComponent(): Boolean {

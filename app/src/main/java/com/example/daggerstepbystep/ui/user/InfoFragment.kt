@@ -33,16 +33,15 @@ class InfoFragment: Fragment(), InfoContract.View {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+        userInfo.setOnClickListener {
+            Navigation.findNavController(it).navigate(R.id.action_infoFragment_to_detailFragment)
+        }
         presenter.onCreate()
     }
 
     override fun onBindInfo(user: User) {
         userInfo.text = user.name
         accessToken.text = user.address
-
-        userInfo.setOnClickListener {
-            Navigation.findNavController(it).navigate(R.id.action_infoFragment_to_detailFragment)
-        }
     }
 
     private fun createOrGetComponent(): InfoComponent {

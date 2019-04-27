@@ -20,8 +20,8 @@ class LoginActivity : AppCompatActivity(), LoginContract.View {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_login)
         createOrGetLoginComponent().inject(this)
+        setContentView(R.layout.activity_login)
 
         btnLoginSubmit.setOnClickListener {
             presenter.onSubmit(editUserId.text.toString(), editPassword.text.toString())
@@ -32,6 +32,7 @@ class LoginActivity : AppCompatActivity(), LoginContract.View {
         if (navigation is Navigation.OpenMainView) {
             DaggerApp.get(this).buildUserComponent()
             startActivity(Intent(this, MainActivity::class.java))
+            finish()
         }
     }
 

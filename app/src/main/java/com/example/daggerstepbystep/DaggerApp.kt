@@ -1,13 +1,16 @@
 package com.example.daggerstepbystep
 
+import android.app.Activity
 import android.app.Application
 import android.content.Context
+import android.content.Intent
 import com.example.daggerstepbystep.data.login.UserProvider
 import com.example.daggerstepbystep.di.app.AppComponent
 import com.example.daggerstepbystep.di.app.AppModule
 import com.example.daggerstepbystep.di.app.DaggerAppComponent
 import com.example.daggerstepbystep.di.app.user.UserComponent
 import com.example.daggerstepbystep.di.app.user.UserModule
+import com.example.daggerstepbystep.ui.main.MainActivity
 import javax.inject.Inject
 
 class DaggerApp : Application() {
@@ -47,5 +50,13 @@ class DaggerApp : Application() {
         } else {
             null
         }
+    }
+
+    fun restartApp(context: Context) {
+        startActivity(
+            Intent(context, MainActivity::class.java).apply {
+                addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP)
+            }
+        )
     }
 }
