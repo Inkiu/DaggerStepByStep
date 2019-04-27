@@ -1,10 +1,12 @@
 package com.example.daggerstepbystep.data.login
 
 import android.content.Context
+import com.example.daggerstepbystep.di.ApplicationContext
 import com.example.daggerstepbystep.model.Token
+import javax.inject.Inject
 
-class LoginManager(
-    private val context: Context,
+class LoginManager @Inject constructor(
+    @ApplicationContext private val context: Context,
     private val userProvider: UserProvider
 ) {
     fun login(id: String, password: String): Boolean {

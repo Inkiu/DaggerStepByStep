@@ -28,6 +28,4 @@ class LoginModule(
     @Provides
     fun provideLoginPresenter(presenter: LoginPresenter): LoginContract.Presenter = presenter
 
-    @Provides
-    fun provideLoginManager(userProvider: UserProvider): LoginManager = LoginManager(activity, userProvider)
 }

@@ -2,10 +2,12 @@ package com.example.daggerstepbystep.data.login
 
 import android.content.Context
 import android.content.SharedPreferences
+import com.example.daggerstepbystep.di.ApplicationContext
 import com.example.daggerstepbystep.model.Token
+import javax.inject.Inject
 
-class UserProvider(
-    private val context: Context
+class UserProvider @Inject constructor(
+    @ApplicationContext private val context: Context
 ) {
     companion object {
         const val SP_KEY_LOGIN_ID = "login_id"

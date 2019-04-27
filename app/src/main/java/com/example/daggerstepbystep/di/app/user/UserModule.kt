@@ -6,9 +6,4 @@ import dagger.Module
 import dagger.Provides
 
 @Module
-class UserModule(
-    private val userProvider: UserProvider
-) {
-    @Provides
-    fun provideUserRepository(): UserRepository = UserRepository(userProvider)
-}
+class UserModule

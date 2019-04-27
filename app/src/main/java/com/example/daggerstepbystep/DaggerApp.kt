@@ -15,9 +15,6 @@ class DaggerApp : Application() {
         fun get(context: Context): DaggerApp = context.applicationContext as DaggerApp
     }
 
-    @Inject
-    lateinit var userProvider: UserProvider
-
     lateinit var appComponent: AppComponent
     lateinit var userComponent: UserComponent
 
@@ -37,7 +34,7 @@ class DaggerApp : Application() {
 
     fun buildUserComponent() {
         if (!::userComponent.isInitialized) {
-            userComponent = appComponent.plus(UserModule(userProvider))
+            userComponent = appComponent.plus(UserModule())
         }
     }
 }
