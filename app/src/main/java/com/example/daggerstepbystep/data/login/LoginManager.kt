@@ -1,30 +1,22 @@
 package com.example.daggerstepbystep.data.login
 
-import android.content.res.Resources
-import com.example.daggerstepbystep.data.DataManager
-import com.example.daggerstepbystep.data.SharedPrefsHelper
-import com.example.daggerstepbystep.model.User
+import android.content.Context
+import com.example.daggerstepbystep.di.ApplicationContext
+import com.example.daggerstepbystep.model.Token
 import javax.inject.Inject
-import javax.inject.Singleton
 
-const val LOGIN_KEY = "login_user"
-
-@Singleton
 class LoginManager @Inject constructor(
-    private val sharedPrefsHelper: SharedPrefsHelper,
-    private val dataManager: DataManager
+    @ApplicationContext private val context: Context,
+    private val userProvider: UserProvider
 ) {
-    fun login(user: User) {
-        sharedPrefsHelper.put(LOGIN_KEY, user.id)
-    }
-
-    @Throws(Resources.NotFoundException::class, NullPointerException::class)
-    fun getLoginUser(): User {
-        val loginId = sharedPrefsHelper.get(LOGIN_KEY, -1L)
-        return dataManager.getUser(loginId)
-    }
-
-    fun logout() {
-        sharedPrefsHelper.deleteSavedData(LOGIN_KEY)
+    fun login(id: String, password: String): Boolean {
+        // login api call
+        val success = id == "id" && password == "password"
+        if (success) {
+            userProvider.setLoginToken(Token("Ok Access", "Ok Refresh"))
+        } else {
+            /* no-op */
+        }
+        return success
     }
 }
