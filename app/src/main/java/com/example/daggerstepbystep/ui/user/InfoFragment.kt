@@ -6,6 +6,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
+import androidx.navigation.Navigation
 import com.example.daggerstepbystep.R
 import com.example.daggerstepbystep.di.main.info.InfoComponent
 import com.example.daggerstepbystep.di.main.info.InfoModule
@@ -38,6 +39,10 @@ class InfoFragment: Fragment(), InfoContract.View {
     override fun onBindInfo(user: User) {
         userInfo.text = user.name
         accessToken.text = user.address
+
+        userInfo.setOnClickListener {
+            Navigation.findNavController(it).navigate(R.id.action_infoFragment_to_detailFragment)
+        }
     }
 
     private fun createOrGetComponent(): InfoComponent {

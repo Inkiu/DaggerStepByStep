@@ -4,6 +4,7 @@ import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.widget.Toast
+import androidx.navigation.Navigation.findNavController
 import com.example.daggerstepbystep.DaggerApp
 import com.example.daggerstepbystep.R
 import com.example.daggerstepbystep.di.main.DaggerMainComponent
@@ -29,13 +30,6 @@ class MainActivity : AppCompatActivity(), MainContract.View {
             finish()
             return
         }
-        inflateFragment()
-    }
-
-    private fun inflateFragment() {
-        supportFragmentManager.beginTransaction().apply {
-            replace(R.id.fragmentContainer, InfoFragment())
-        }.commit()
     }
 
     private fun validateMainComponent(): Boolean {
