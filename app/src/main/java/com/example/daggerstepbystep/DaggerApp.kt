@@ -15,12 +15,14 @@ class DaggerApp : Application() {
         fun get(context: Context): DaggerApp = context.applicationContext as DaggerApp
     }
 
+    @Inject
+    lateinit var userProvider: UserProvider
+
     lateinit var appComponent: AppComponent
     lateinit var userComponent: UserComponent
 
     override fun onCreate() {
         super.onCreate()
-
         buildAppComponent()
     }
 
@@ -35,6 +37,15 @@ class DaggerApp : Application() {
     fun buildUserComponent() {
         if (!::userComponent.isInitialized) {
             userComponent = appComponent.plus(UserModule())
+        }
+    }
+
+    fun requireUserComponent(): UserComponent? {
+        return if (userProvider.getLoginToken().isValid()) {
+            buildUserComponent()
+            userComponent
+        } else {
+            null
         }
     }
 }
