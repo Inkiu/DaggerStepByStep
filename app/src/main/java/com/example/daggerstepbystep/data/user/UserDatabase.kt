@@ -13,7 +13,6 @@ import javax.inject.Inject
 import android.content.ContentValues
 import com.example.daggerstepbystep.di.PerLogin
 
-@PerLogin
 class UserDatabase @Inject constructor(
     @ApplicationContext context: Context,
     @DatabaseInfo dbName: String,

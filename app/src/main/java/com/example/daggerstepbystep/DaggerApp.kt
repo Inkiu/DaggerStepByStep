@@ -2,10 +2,10 @@ package com.example.daggerstepbystep
 
 import android.app.Application
 import android.content.Context
-import com.example.daggerstepbystep.data.DataManager
-import com.example.daggerstepbystep.di.ApplicationComponent
-import com.example.daggerstepbystep.di.ApplicationModule
-import com.example.daggerstepbystep.di.DaggerApplicationComponent
+import com.example.daggerstepbystep.di.app.AppComponent
+import com.example.daggerstepbystep.di.app.AppModule
+import com.example.daggerstepbystep.di.app.DaggerAppComponent
+import com.example.daggerstepbystep.di.app.user.UserComponent
 import javax.inject.Inject
 
 /*
@@ -17,21 +17,20 @@ class DaggerApp : Application() {
         fun get(context: Context): DaggerApp = context.applicationContext as DaggerApp
     }
 
-    lateinit var applicationComponent: ApplicationComponent
-
-    @Inject
-    lateinit var dataManager: DataManager
+    lateinit var appComponent: AppComponent
+    lateinit var userComponent: UserComponent
 
     override fun onCreate() {
         super.onCreate()
-        applicationComponent = DaggerApplicationComponent
-            .builder()
-            .applicationModule(ApplicationModule(this))
-            .build()
-        applicationComponent.inject(this)
+
+        buildAppComponent()
     }
 
-    fun getComponent(): ApplicationComponent {
-        return applicationComponent
+    private fun buildAppComponent() {
+        appComponent = DaggerAppComponent
+            .builder()
+            .appModule(AppModule(this))
+            .build()
+        appComponent.inject(this)
     }
 }
