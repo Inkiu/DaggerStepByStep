@@ -5,11 +5,14 @@ import android.content.Context
 import com.example.daggerstepbystep.data.login.LoginManager
 import com.example.daggerstepbystep.data.login.UserProvider
 import com.example.daggerstepbystep.di.ApplicationContext
+import com.example.daggerstepbystep.di.app.login.LoginComponent
 import dagger.Module
 import dagger.Provides
 import javax.inject.Singleton
 
-@Module
+@Module(
+    subcomponents = [LoginComponent::class]
+)
 class AppModule(
     private val application: Application
 ) {
