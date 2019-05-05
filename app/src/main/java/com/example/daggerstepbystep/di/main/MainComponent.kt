@@ -20,13 +20,4 @@ import dagger.android.support.AndroidSupportInjectionModule
     ]
 )
 interface MainComponent : AndroidInjector<MainActivity> {
-
-    @Subcomponent.Builder
-    abstract class Builder : AndroidInjector.Builder<MainActivity>() {
-        abstract fun mainModule(module: MainModule)
-
-        override fun seedInstance(instance: MainActivity) {
-            mainModule(MainModule(instance))
-        }
-    }
 }

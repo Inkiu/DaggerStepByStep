@@ -9,11 +9,9 @@ import dagger.Provides
 
 @Module
 abstract class InfoModule {
-
     @Binds
     abstract fun provideInfoView(infoFragment: InfoFragment): InfoContract.View
 
     @Binds
     abstract fun provideInfoPresenter(presenter: InfoPresenter): InfoContract.Presenter
-
 }

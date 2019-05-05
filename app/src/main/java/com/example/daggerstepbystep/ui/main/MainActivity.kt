@@ -6,6 +6,7 @@ import android.os.Bundle
 import androidx.fragment.app.Fragment
 import com.example.daggerstepbystep.DaggerApp
 import com.example.daggerstepbystep.R
+import com.example.daggerstepbystep.di.app.ActivityBuilder_BindMainActivity
 import com.example.daggerstepbystep.di.main.MainComponent
 import com.example.daggerstepbystep.ui.login.LoginActivity
 import dagger.android.AndroidInjection
@@ -20,9 +21,6 @@ class MainActivity : AppCompatActivity(), MainContract.View, HasSupportFragmentI
 
     @Inject
     lateinit var presenter: MainContract.Presenter
-
-    @Inject
-    lateinit var mainComponent: MainComponent
 
     @Inject
     lateinit var dispatchingAndroidInjector: DispatchingAndroidInjector<Fragment>

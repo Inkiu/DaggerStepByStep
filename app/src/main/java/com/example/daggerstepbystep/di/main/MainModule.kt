@@ -5,25 +5,21 @@ import com.example.daggerstepbystep.ui.main.MainActivity
 import com.example.daggerstepbystep.di.ActivityContext
 import com.example.daggerstepbystep.ui.main.MainContract
 import com.example.daggerstepbystep.ui.main.MainPresenter
+import dagger.Binds
 import dagger.Module
 import dagger.Provides
 
 @Module
-class MainModule(
-    private val activity: MainActivity
-) {
+abstract class MainModule {
 
-    @Provides
+    @Binds
     @ActivityContext
-    fun provideContext(): Context = activity
+    abstract fun provideContext(mainActivity: MainActivity): Context
 
-    @Provides
-    fun provideActivity(): MainActivity = activity
+    @Binds
+    abstract fun provideMainView(mainActivity: MainActivity): MainContract.View
 
-    @Provides
-    fun provideMainView(): MainContract.View = activity
-
-    @Provides
-    fun provideMainPresenter(presenter: MainPresenter): MainContract.Presenter = presenter
+    @Binds
+    abstract fun provideMainPresenter(presenter: MainPresenter): MainContract.Presenter
 
 }
