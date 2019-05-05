@@ -33,7 +33,6 @@ class LoginActivity : AppCompatActivity(), LoginContract.View {
 
     override fun onNavigate(navigation: Navigation) {
         if (navigation is Navigation.OpenMainView) {
-            DaggerApp.get(this).buildUserComponent()
             startActivity(Intent(this, MainActivity::class.java))
             finish()
         }
