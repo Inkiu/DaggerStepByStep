@@ -1,15 +1,10 @@
-package com.example.daggerstepbystep.di.app.login
+package com.example.daggerstepbystep.di.login
 
-import android.content.Context
-import com.example.daggerstepbystep.data.login.LoginManager
-import com.example.daggerstepbystep.data.login.UserProvider
-import com.example.daggerstepbystep.di.ActivityContext
 import com.example.daggerstepbystep.ui.login.LoginActivity
 import com.example.daggerstepbystep.ui.login.LoginContract
 import com.example.daggerstepbystep.ui.login.LoginPresenter
 import dagger.Binds
 import dagger.Module
-import dagger.Provides
 
 @Module
 abstract class LoginModule {

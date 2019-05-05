@@ -8,11 +8,7 @@ import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import androidx.navigation.Navigation
 import com.example.daggerstepbystep.R
-import com.example.daggerstepbystep.di.main.info.InfoComponent
-import com.example.daggerstepbystep.di.main.info.InfoModule
 import com.example.daggerstepbystep.model.User
-import com.example.daggerstepbystep.ui.main.MainActivity
-import dagger.android.AndroidInjection
 import dagger.android.support.AndroidSupportInjection
 import kotlinx.android.synthetic.main.fragment_info.*
 import javax.inject.Inject

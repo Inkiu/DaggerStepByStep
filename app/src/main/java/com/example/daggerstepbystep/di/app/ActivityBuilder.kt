@@ -1,6 +1,6 @@
 package com.example.daggerstepbystep.di.app
 
-import com.example.daggerstepbystep.di.app.login.LoginModule
+import com.example.daggerstepbystep.di.login.LoginModule
 import com.example.daggerstepbystep.di.main.FragmentBuilder
 import com.example.daggerstepbystep.di.main.MainModule
 import com.example.daggerstepbystep.ui.login.LoginActivity

@@ -7,12 +7,7 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import com.example.daggerstepbystep.R
-import com.example.daggerstepbystep.di.main.detail.DetailComponent
-import com.example.daggerstepbystep.di.main.detail.DetailModule
-import com.example.daggerstepbystep.di.main.info.InfoComponent
-import com.example.daggerstepbystep.model.User
 import com.example.daggerstepbystep.model.UserDetail
-import com.example.daggerstepbystep.ui.main.MainActivity
 import dagger.android.support.AndroidSupportInjection
 import kotlinx.android.synthetic.main.fragemnt_detail.*
 import javax.inject.Inject

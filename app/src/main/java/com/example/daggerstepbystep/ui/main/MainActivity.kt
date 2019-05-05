@@ -6,13 +6,10 @@ import android.os.Bundle
 import androidx.fragment.app.Fragment
 import com.example.daggerstepbystep.DaggerApp
 import com.example.daggerstepbystep.R
-import com.example.daggerstepbystep.di.app.ActivityBuilder_BindMainActivity
-import com.example.daggerstepbystep.di.main.MainComponent
 import com.example.daggerstepbystep.ui.login.LoginActivity
 import dagger.android.AndroidInjection
 import dagger.android.AndroidInjector
 import dagger.android.DispatchingAndroidInjector
-import dagger.android.HasFragmentInjector
 import dagger.android.support.HasSupportFragmentInjector
 import kotlinx.android.synthetic.main.activity_main.*
 import javax.inject.Inject
