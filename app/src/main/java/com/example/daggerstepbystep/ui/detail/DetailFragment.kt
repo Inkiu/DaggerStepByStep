@@ -13,6 +13,7 @@ import com.example.daggerstepbystep.di.main.info.InfoComponent
 import com.example.daggerstepbystep.model.User
 import com.example.daggerstepbystep.model.UserDetail
 import com.example.daggerstepbystep.ui.main.MainActivity
+import dagger.android.support.AndroidSupportInjection
 import kotlinx.android.synthetic.main.fragemnt_detail.*
 import javax.inject.Inject
 
@@ -24,8 +25,8 @@ class DetailFragment: Fragment(), DetailContract.View {
     lateinit var detailComponent: DetailComponent
 
     override fun onAttach(context: Context?) {
+        AndroidSupportInjection.inject(this)
         super.onAttach(context)
-        createOrGetComponent()
     }
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
@@ -39,14 +40,5 @@ class DetailFragment: Fragment(), DetailContract.View {
 
     override fun onBindInfo(userDetail: UserDetail) {
         userDetailTextView.text = userDetail.detail
-    }
-
-    private fun createOrGetComponent(): DetailComponent {
-        if (!::detailComponent.isInitialized) {
-            detailComponent = (requireActivity() as MainActivity).mainComponent.
-                plus(DetailModule(this))
-            detailComponent.inject(this)
-        }
-        return detailComponent
     }
 }

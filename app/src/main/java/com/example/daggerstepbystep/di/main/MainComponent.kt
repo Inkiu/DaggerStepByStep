@@ -29,7 +29,4 @@ interface MainComponent : AndroidInjector<MainActivity> {
             mainModule(MainModule(instance))
         }
     }
-
-    fun plus(detail: DetailModule): DetailComponent
-
 }
