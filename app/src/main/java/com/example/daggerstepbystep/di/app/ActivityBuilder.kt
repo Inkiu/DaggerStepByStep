@@ -1,30 +1,23 @@
 package com.example.daggerstepbystep.di.app
 
-import android.app.Activity
-import com.example.daggerstepbystep.di.app.login.LoginComponent
-import com.example.daggerstepbystep.di.main.MainComponent
+import com.example.daggerstepbystep.di.PerActivity
+import com.example.daggerstepbystep.di.login.LoginModule
+import com.example.daggerstepbystep.di.main.MainFragmentBuilder
+import com.example.daggerstepbystep.di.main.MainModule
 import com.example.daggerstepbystep.ui.login.LoginActivity
 import com.example.daggerstepbystep.ui.main.MainActivity
-import dagger.Binds
 import dagger.Module
-import dagger.android.ActivityKey
-import dagger.android.AndroidInjector
-import dagger.multibindings.IntoMap
+import dagger.android.ContributesAndroidInjector
 
-@Module(
-    subcomponents = [
-        LoginComponent::class,
-        MainComponent::class
-    ]
-)
+@Module
 abstract class ActivityBuilder {
-    @Binds
-    @IntoMap
-    @ActivityKey(LoginActivity::class)
-    abstract fun bindLoginActivity(builder: LoginComponent.Builder): AndroidInjector.Factory<out Activity>
 
-    @Binds
-    @IntoMap
-    @ActivityKey(MainActivity::class)
-    abstract fun bindMainActivity(builder: MainComponent.Builder): AndroidInjector.Factory<out Activity>
+    @ContributesAndroidInjector(modules = [LoginModule::class])
+    @PerActivity
+    abstract fun bindLoginActivity(): LoginActivity
+
+    @ContributesAndroidInjector(modules = [MainModule::class, MainFragmentBuilder::class])
+    @PerActivity
+    abstract fun bindMainActivity(): MainActivity
+
 }
