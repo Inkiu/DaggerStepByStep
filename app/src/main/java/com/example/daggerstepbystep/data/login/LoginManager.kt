@@ -19,4 +19,8 @@ class LoginManager @Inject constructor(
         }
         return success
     }
+
+    fun isLogined(): Boolean {
+        return userProvider.getLoginToken().isValid()
+    }
 }
