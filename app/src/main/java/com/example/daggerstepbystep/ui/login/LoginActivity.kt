@@ -5,7 +5,6 @@ import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
 import com.example.daggerstepbystep.DaggerApp
 import com.example.daggerstepbystep.R
-import com.example.daggerstepbystep.di.app.login.LoginComponent
 import com.example.daggerstepbystep.di.app.login.LoginModule
 import com.example.daggerstepbystep.ui.main.MainActivity
 import com.example.daggerstepbystep.ui.main.Navigation
@@ -18,7 +17,6 @@ class LoginActivity : AppCompatActivity(), LoginContract.View {
     @Inject
     lateinit var presenter: LoginContract.Presenter
 
-    lateinit var loginComponent: LoginComponent
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)

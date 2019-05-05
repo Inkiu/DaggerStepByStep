@@ -7,25 +7,15 @@ import com.example.daggerstepbystep.di.ActivityContext
 import com.example.daggerstepbystep.ui.login.LoginActivity
 import com.example.daggerstepbystep.ui.login.LoginContract
 import com.example.daggerstepbystep.ui.login.LoginPresenter
+import dagger.Binds
 import dagger.Module
 import dagger.Provides
 
 @Module
-class LoginModule(
-    private val activity: LoginActivity
-) {
+abstract class LoginModule {
+    @Binds
+    abstract fun provideLoginPresenter(presenter: LoginPresenter): LoginContract.Presenter
 
-    @Provides
-    @ActivityContext
-    fun provideContext(): Context = activity
-
-    @Provides
-    fun provideActivity(): LoginActivity = activity
-
-    @Provides
-    fun provideLoginView(): LoginContract.View = activity
-
-    @Provides
-    fun provideLoginPresenter(presenter: LoginPresenter): LoginContract.Presenter = presenter
-
+    @Binds
+    abstract fun provideLoginView(loginActivity: LoginActivity): LoginContract.View
 }
