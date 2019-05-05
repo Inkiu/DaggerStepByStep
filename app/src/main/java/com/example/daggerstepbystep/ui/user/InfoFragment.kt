@@ -12,6 +12,8 @@ import com.example.daggerstepbystep.di.main.info.InfoComponent
 import com.example.daggerstepbystep.di.main.info.InfoModule
 import com.example.daggerstepbystep.model.User
 import com.example.daggerstepbystep.ui.main.MainActivity
+import dagger.android.AndroidInjection
+import dagger.android.support.AndroidSupportInjection
 import kotlinx.android.synthetic.main.fragment_info.*
 import javax.inject.Inject
 
@@ -20,11 +22,9 @@ class InfoFragment: Fragment(), InfoContract.View {
     @Inject
     lateinit var presenter: InfoContract.Presenter
 
-    lateinit var infoComponent: InfoComponent
-
     override fun onAttach(context: Context?) {
+        AndroidSupportInjection.inject(this)
         super.onAttach(context)
-        createOrGetComponent()
     }
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
@@ -42,14 +42,5 @@ class InfoFragment: Fragment(), InfoContract.View {
     override fun onBindInfo(user: User) {
         userInfo.text = user.name
         accessToken.text = user.address
-    }
-
-    private fun createOrGetComponent(): InfoComponent {
-        if (!::infoComponent.isInitialized) {
-            infoComponent = (requireActivity() as MainActivity).mainComponent.
-                plus(InfoModule(this))
-            infoComponent.inject(this)
-        }
-        return infoComponent
     }
 }

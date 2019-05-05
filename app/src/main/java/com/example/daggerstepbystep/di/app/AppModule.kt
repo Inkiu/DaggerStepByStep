@@ -4,7 +4,9 @@ import android.app.Application
 import android.content.Context
 import com.example.daggerstepbystep.data.login.LoginManager
 import com.example.daggerstepbystep.data.login.UserProvider
+import com.example.daggerstepbystep.data.user.UserRepository
 import com.example.daggerstepbystep.di.ApplicationContext
+import com.example.daggerstepbystep.di.app.login.LoginComponent
 import dagger.Module
 import dagger.Provides
 import javax.inject.Singleton
@@ -19,8 +21,4 @@ class AppModule(
 
     @Provides
     fun provideApplication(): Application = application
-
-    @Provides
-    @Singleton
-    fun provideUserProvider(): UserProvider = UserProvider(application)
 }

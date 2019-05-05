@@ -3,37 +3,47 @@ package com.example.daggerstepbystep.ui.main
 import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
-import android.widget.Toast
-import androidx.navigation.Navigation.findNavController
+import androidx.fragment.app.Fragment
 import com.example.daggerstepbystep.DaggerApp
 import com.example.daggerstepbystep.R
-import com.example.daggerstepbystep.di.main.DaggerMainComponent
 import com.example.daggerstepbystep.di.main.MainComponent
-import com.example.daggerstepbystep.di.main.MainModule
 import com.example.daggerstepbystep.ui.login.LoginActivity
-import com.example.daggerstepbystep.ui.user.InfoFragment
+import dagger.android.AndroidInjection
+import dagger.android.AndroidInjector
+import dagger.android.DispatchingAndroidInjector
+import dagger.android.HasFragmentInjector
+import dagger.android.support.HasSupportFragmentInjector
 import kotlinx.android.synthetic.main.activity_main.*
 import javax.inject.Inject
 
-class MainActivity : AppCompatActivity(), MainContract.View {
+class MainActivity : AppCompatActivity(), MainContract.View, HasSupportFragmentInjector {
 
     @Inject
     lateinit var presenter: MainContract.Presenter
 
+    @Inject
     lateinit var mainComponent: MainComponent
+
+    @Inject
+    lateinit var dispatchingAndroidInjector: DispatchingAndroidInjector<Fragment>
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        if (!validateMainComponent()) {
-            Toast.makeText(this, "Login Failed", Toast.LENGTH_SHORT).show()
-            startActivity(Intent(this, LoginActivity::class.java))
-            finish()
-            return
-        }
+        AndroidInjection.inject(this)
         setContentView(R.layout.activity_main)
+        presenter.onCreate()
 
         floatingButton.setOnClickListener {
             presenter.onLogout()
+        }
+    }
+
+    override fun onNavigate(navigation: Navigation) {
+        when (navigation) {
+            is Navigation.OpenLogin -> {
+                startActivity(Intent(this, LoginActivity::class.java))
+                finish()
+            }
         }
     }
 
@@ -41,25 +51,7 @@ class MainActivity : AppCompatActivity(), MainContract.View {
         DaggerApp.get(this).restartApp(this)
     }
 
-    private fun validateMainComponent(): Boolean {
-        return if (!::mainComponent.isInitialized) {
-            val component = createMainComponent()
-            if (component != null) {
-                mainComponent = component
-                mainComponent.inject(this)
-            }
-            return component != null
-        } else true
-    }
-
-    private fun createMainComponent(): MainComponent? {
-        val userComponent = DaggerApp.get(this).requireUserComponent()
-        return if (userComponent == null) null
-        else {
-            DaggerMainComponent.builder()
-                .mainModule(MainModule(this))
-                .userComponent(userComponent)
-                .build()
-        }
+    override fun supportFragmentInjector(): AndroidInjector<Fragment> {
+        return dispatchingAndroidInjector
     }
 }

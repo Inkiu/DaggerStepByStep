@@ -9,6 +9,8 @@ import com.example.daggerstepbystep.di.app.login.LoginComponent
 import com.example.daggerstepbystep.di.app.login.LoginModule
 import com.example.daggerstepbystep.ui.main.MainActivity
 import com.example.daggerstepbystep.ui.main.Navigation
+import dagger.android.AndroidInjection
+import dagger.android.AndroidInjector
 import kotlinx.android.synthetic.main.activity_login.*
 import javax.inject.Inject
 
@@ -20,7 +22,8 @@ class LoginActivity : AppCompatActivity(), LoginContract.View {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        createOrGetLoginComponent().inject(this)
+        AndroidInjection.inject(this)
+//        createOrGetLoginComponent().inject(this)
         setContentView(R.layout.activity_login)
 
         btnLoginSubmit.setOnClickListener {
@@ -30,7 +33,6 @@ class LoginActivity : AppCompatActivity(), LoginContract.View {
 
     override fun onNavigate(navigation: Navigation) {
         if (navigation is Navigation.OpenMainView) {
-            DaggerApp.get(this).buildUserComponent()
             startActivity(Intent(this, MainActivity::class.java))
             finish()
         }
@@ -40,11 +42,11 @@ class LoginActivity : AppCompatActivity(), LoginContract.View {
 
     }
 
-    private fun createOrGetLoginComponent(): LoginComponent {
-        if (!::loginComponent.isInitialized) {
-            loginComponent = DaggerApp.get(this).appComponent
-                .plus(LoginModule(this))
-        }
-        return loginComponent
-    }
+//    private fun createOrGetLoginComponent(): LoginComponent {
+//        if (!::loginComponent.isInitialized) {
+//            loginComponent = DaggerApp.get(this).appComponent
+//                .plus(LoginModule(this))
+//        }
+//        return loginComponent
+//    }
 }
