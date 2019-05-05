@@ -7,11 +7,9 @@ import android.widget.Toast
 import androidx.navigation.Navigation.findNavController
 import com.example.daggerstepbystep.DaggerApp
 import com.example.daggerstepbystep.R
-import com.example.daggerstepbystep.di.main.DaggerMainComponent
 import com.example.daggerstepbystep.di.main.MainComponent
 import com.example.daggerstepbystep.di.main.MainModule
-import com.example.daggerstepbystep.ui.login.LoginActivity
-import com.example.daggerstepbystep.ui.user.InfoFragment
+import dagger.android.AndroidInjection
 import kotlinx.android.synthetic.main.activity_main.*
 import javax.inject.Inject
 
@@ -20,16 +18,12 @@ class MainActivity : AppCompatActivity(), MainContract.View {
     @Inject
     lateinit var presenter: MainContract.Presenter
 
+    @Inject
     lateinit var mainComponent: MainComponent
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        if (!validateMainComponent()) {
-            Toast.makeText(this, "Login Failed", Toast.LENGTH_SHORT).show()
-            startActivity(Intent(this, LoginActivity::class.java))
-            finish()
-            return
-        }
+        AndroidInjection.inject(this)
         setContentView(R.layout.activity_main)
 
         floatingButton.setOnClickListener {
@@ -39,27 +33,5 @@ class MainActivity : AppCompatActivity(), MainContract.View {
 
     override fun onRestartApp() {
         DaggerApp.get(this).restartApp(this)
-    }
-
-    private fun validateMainComponent(): Boolean {
-        return if (!::mainComponent.isInitialized) {
-            val component = createMainComponent()
-            if (component != null) {
-                mainComponent = component
-                mainComponent.inject(this)
-            }
-            return component != null
-        } else true
-    }
-
-    private fun createMainComponent(): MainComponent? {
-        val userComponent = DaggerApp.get(this).requireUserComponent()
-        return if (userComponent == null) null
-        else {
-            DaggerMainComponent.builder()
-                .mainModule(MainModule(this))
-                .userComponent(userComponent)
-                .build()
-        }
     }
 }
