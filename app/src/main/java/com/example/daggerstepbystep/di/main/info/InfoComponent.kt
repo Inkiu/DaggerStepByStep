@@ -9,13 +9,4 @@ import dagger.android.AndroidInjector
 @PerFragment
 @Subcomponent(modules = [InfoModule::class])
 interface InfoComponent : AndroidInjector<InfoFragment> {
-
-    @Subcomponent.Builder
-    abstract class Builder : AndroidInjector.Builder<InfoFragment>() {
-        abstract fun infoModule(module: InfoModule)
-
-        override fun seedInstance(instance: InfoFragment) {
-            infoModule(InfoModule(instance))
-        }
-    }
 }

@@ -22,8 +22,6 @@ class DetailFragment: Fragment(), DetailContract.View {
     @Inject
     lateinit var presenter: DetailContract.Presenter
 
-    lateinit var detailComponent: DetailComponent
-
     override fun onAttach(context: Context?) {
         AndroidSupportInjection.inject(this)
         super.onAttach(context)
