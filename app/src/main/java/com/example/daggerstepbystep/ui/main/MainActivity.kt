@@ -9,22 +9,20 @@ import com.example.daggerstepbystep.R
 import com.example.daggerstepbystep.ui.login.LoginActivity
 import dagger.android.AndroidInjection
 import dagger.android.AndroidInjector
+import dagger.android.DaggerActivity
 import dagger.android.DispatchingAndroidInjector
+import dagger.android.support.DaggerAppCompatActivity
 import dagger.android.support.HasSupportFragmentInjector
 import kotlinx.android.synthetic.main.activity_main.*
 import javax.inject.Inject
 
-class MainActivity : AppCompatActivity(), MainContract.View, HasSupportFragmentInjector {
+class MainActivity : DaggerAppCompatActivity(), MainContract.View {
 
     @Inject
     lateinit var presenter: MainContract.Presenter
 
-    @Inject
-    lateinit var dispatchingAndroidInjector: DispatchingAndroidInjector<Fragment>
-
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        AndroidInjection.inject(this)
         setContentView(R.layout.activity_main)
         presenter.onCreate()
 
@@ -44,9 +42,5 @@ class MainActivity : AppCompatActivity(), MainContract.View, HasSupportFragmentI
 
     override fun onRestartApp() {
         DaggerApp.get(this).restartApp(this)
-    }
-
-    override fun supportFragmentInjector(): AndroidInjector<Fragment> {
-        return dispatchingAndroidInjector
     }
 }

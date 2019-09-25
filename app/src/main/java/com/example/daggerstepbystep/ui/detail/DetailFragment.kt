@@ -9,10 +9,11 @@ import androidx.fragment.app.Fragment
 import com.example.daggerstepbystep.R
 import com.example.daggerstepbystep.model.UserDetail
 import dagger.android.support.AndroidSupportInjection
+import dagger.android.support.DaggerFragment
 import kotlinx.android.synthetic.main.fragemnt_detail.*
 import javax.inject.Inject
 
-class DetailFragment: Fragment(), DetailContract.View {
+class DetailFragment: DaggerFragment(), DetailContract.View {
 
     @Inject
     lateinit var presenter: DetailContract.Presenter

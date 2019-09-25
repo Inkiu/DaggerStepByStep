@@ -9,35 +9,22 @@ import com.example.daggerstepbystep.di.app.AppModule
 import com.example.daggerstepbystep.di.app.DaggerAppComponent
 import com.example.daggerstepbystep.ui.main.MainActivity
 import dagger.android.AndroidInjector
+import dagger.android.DaggerApplication
 import dagger.android.DispatchingAndroidInjector
 import dagger.android.HasActivityInjector
 import javax.inject.Inject
 
-class DaggerApp : Application(), HasActivityInjector {
+class DaggerApp : DaggerApplication() {
     companion object {
         fun get(context: Context): DaggerApp = context.applicationContext as DaggerApp
     }
 
-    @Inject
-    lateinit var activityDispatchingAndroidInjector: DispatchingAndroidInjector<Activity>
-
-    lateinit var appComponent: AppComponent
-
-    override fun onCreate() {
-        super.onCreate()
-        buildAppComponent()
-    }
-
-    override fun activityInjector(): AndroidInjector<Activity> {
-        return activityDispatchingAndroidInjector
-    }
-
-    private fun buildAppComponent() {
-        appComponent = DaggerAppComponent
+    override fun applicationInjector(): AndroidInjector<out DaggerApplication> {
+        return DaggerAppComponent
             .builder()
+            .application(this)
             .appModule(AppModule(this))
             .build()
-        appComponent.inject(this)
     }
 
     fun restartApp(context: Context) {
